@@ -5,10 +5,10 @@ import org.junit.Test
 import utils.readLinesFromResourceFile
 
 class TrebuchetCalibratorTest {
+    private val trebuchetCalibrator = TrebuchetCalibrator()
 
     @Test
     fun `Calculation is correct for test input`() {
-        val trebuchetCalibrator = TrebuchetCalibrator()
         val lines = readLinesFromResourceFile("december1", "test_input_1.txt")
         val result = trebuchetCalibrator.calibrate(lines)
 
@@ -17,7 +17,6 @@ class TrebuchetCalibratorTest {
 
     @Test
     fun `Calculation supporting digits as text is correct for test input`() {
-        val trebuchetCalibrator = TrebuchetCalibrator()
         val lines = readLinesFromResourceFile("december1", "test_input_2.txt")
         val result = trebuchetCalibrator.calibrateSupportingDigitsAsText(lines)
 
