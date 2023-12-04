@@ -14,11 +14,10 @@ class ScratchcardPrizeAnalyzer(
         val scratchcards = scratchcardMapper.mapLineScratchcards(lines)
         var totalScratchcards = scratchcards.size
         var cardNumbers = scratchcards.map { it.cardNumber }
-        val cardNumberToWinningScratchcardsMap = scratchcards.groupBy { it.cardNumber }.map {
-            val scratchcard = it.value.first()
-            it.key to scratchcard.winningNumbers.intersect(scratchcard.numbers).count()
-        }.toMap()
-        
+        val cardNumberToWinningScratchcardsMap = scratchcards.associate {
+            it.cardNumber to it.winningNumbers.intersect(it.numbers).count()
+        }
+
         while (true) {
             cardNumbers = getWonCopies(cardNumbers, cardNumberToWinningScratchcardsMap)
             if (cardNumbers.isEmpty()) break
